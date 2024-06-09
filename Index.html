@@ -1,0 +1,93 @@
+<html>
+  <style>
+    body{
+      background-color:#79eff7 ;
+    }
+    td{
+      text-align: center;
+    }
+    table{
+      border: 2px ridge black;
+    }
+    tr,td{
+      border: 2px dotted black;
+    }
+    button{
+      width:100px;
+    }
+    marquee{
+      background-color:#a1eeff;
+      opacity:20px;
+    }
+    td{
+      background-color:#9cb4ff;
+    }
+  </style>
+  <body>
+    <center><h1>perfect mixer</h1></center><br>
+    <div class="value">
+    <center>
+    <table>
+     <tr>
+    <td>
+    <center><label>enter quantity : </label><br><input type="number" id="ib">
+    </center>
+    </td><td onclick="cal()" style="padding:0px 10px 0px 10px; background-color:#ff6363;">results</td></tr>
+    <tr><td><label>bitumen</label>
+    <select id="bp">
+      <option>4</option>
+      <option>5</option>
+      <option>6</option>
+      <option>7</option>
+      <option>8</option>
+    </select><label>%</label>
+    </td><td><h5 id="r1"></h5></td></tr>
+    <tr><td><label>coarse aggregate</label></td><td><h5 id="r2"></h5></td></tr>
+    <tr><td><label>fine aggregate</label></td><td><h5 id="r3"></h5></td></tr>
+    <tr><td><label>filler
+    <select id="fp">
+      <option>2</option>
+      <option>4</option>
+      <option>6</option>
+      <option>8</option>
+      <option>10</option>
+      <option>12</option>
+    </select><label>%</label>
+    </label></td><td><h5 id="r4"></h5></td></tr>
+    <tr><td><label>plastic</label></td><td><h5 id="r5"></h5></td></tr>
+    </table>
+    </center><br><br>
+    <marquee scrollamount="10"><h2 id="vr"></h2></marquee>
+    </div>
+  </body> 
+  <script>
+  let ib = document.getElementById('ib');
+  let r1 = document.getElementById('r1');
+  let r2 = document.getElementById('r2');
+  let r3 = document.getElementById('r3');
+  let r4 = document.getElementById('r4');
+  let r5 = document.getElementById('r5');
+  let vr = document.getElementById("vr");
+  let bp = document.getElementById('bp');
+  let fp = document.getElementById('fp');
+  let a = 0;
+  function cal() {
+  let cv1 = bp.value;
+  let cv2 = fp.value;
+  r1.textContent = (cv1 / 100) * ib.value;
+  a += Math.floor((cv1 / 100) * ib.value);
+  r5.textContent = (10 / 100) * ib.value;
+  a += Math.floor((10 / 100) * ib.value);
+  r2.textContent = (((100 - 10 - cv1) / 2) / 100) * ib.value;
+  a += Math.floor((((100 - 10 - cv1) / 2) / 100) * ib.value);
+  r3.textContent = Math.floor(((((100 - 10 - cv1) / 2) - ((cv2 / 100) * (100 - cv1 - 10))) / 100) * ib.value);
+  a += Math.floor(((((100 - 10 - cv1) / 2) - ((cv2 / 100) * (100 - cv1 - 10))) / 100) * ib.value);
+  r4.textContent = Math.floor(((cv2 / 100) * (100 - cv1 - 10) / 100) * ib.value);
+  a += Math.floor(((cv2 / 100) * (100 - cv1 - 10) / 100) * ib.value);
+  if (a <= ib.value)
+  vr.textContent = "ð the addition of every requirement matches the desired quantity ð";
+  else
+  vr.textContent = "â";
+  }
+  </script>
+</html>
